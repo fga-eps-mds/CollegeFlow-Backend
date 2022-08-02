@@ -1,1 +1,5 @@
+# Ignore a pasta node_modules
+node_modules
+
+# Ignore arquivos relacionados as chaves de API
 .env
