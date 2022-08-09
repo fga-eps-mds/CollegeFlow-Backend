@@ -12,13 +12,9 @@ Verifique sua versão
   
     docker -v && docker-compose -v
 
-2- Faça o clone do projeto
+3- Faça o clone do projeto
 
        git clone git@github.com:fga-eps-mds/CollegeFlow-Backend.git
-
-3- Para instalar as dependecais do projeto digite o comando: 
-
-    npm install
 
 ## Comandos
 
