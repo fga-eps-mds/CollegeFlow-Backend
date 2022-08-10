@@ -1,4 +1,5 @@
 # CollegeFlow-Backend
+<p align="center">  <img alt="College Flow" src=".github/images/college-flow-logo-blue.png" width="400px"></p>
 
 <p align="center">
 <!--     <a href="https://app.travis-ci.com/github/fga-eps-mds/2022-1-PokeRanking" alt="Status da build" >
