@@ -11,7 +11,7 @@ require("dotenv").config();
 //Conectando ao Banco de Dados
 mongoose.connect(
   // Usando variáveis do .env
-  `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@database.gtaevsd.mongodb.net/database?retryWrites=true&w=majority`,
+  `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@database.gtaevsd.mongodb.net/database?retryWrites=true&w=majority`,
   (error) => {
     // Se houve erro, vamos retonar ele no console.log
     if (error) {
