@@ -1,14 +1,8 @@
 const express = require("express");
-const {
-  createSubject,
-  listSubject,
-  deleteSubject,
-  updateSubject,
-} = require("../controllers/subjects");
+const { createSubject, listSubject } = require("../controllers/subjects");
 const router = express.Router();
 const { check } = require("express-validator");
-const SubjectModel = require("../models/subject")
-
+const SubjectModel = require("../models/subject");
 
 router.post(
   "/subject",
@@ -27,8 +21,30 @@ router.post(
 
 router.get("/subject", listSubject);
 
-router.delete("/subject:id", deleteSubject);
+// router.delete("/subject:id", deleteSubject);
 
-router.patch("/subject:id", updateSubject);
+router.patch("/subject/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const subject = await SubjectModel.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+
+    res.status(200).json(subject);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+router.delete("/subject/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const subject = await SubjectModel.findByIdAndRemove(id);
+
+    res.status(200).json(subject);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 module.exports = router;

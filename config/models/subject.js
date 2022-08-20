@@ -12,9 +12,6 @@ const subjectSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  semesterSuggested: {
-    type: Number,
-  },
 });
 
 const SubjectModel = mongoose.model("Subject", subjectSchema);
