@@ -8,6 +8,7 @@ connectToDatabase();
 const subjectModel = require("./config/models/subject");
 
 const app = express();
+app.use(express.json());
 
 //Importando as rotas
 const subjectRoutes = require("./config/routes/subject");
