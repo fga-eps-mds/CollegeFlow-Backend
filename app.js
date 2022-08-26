@@ -1,45 +1,21 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const app = express();
-
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-var request = require("request");
 require("dotenv").config();
 
-//Conectando ao Banco de Dados
-mongoose.connect(
-  // Usando variáveis do .env
-  `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@database.gtaevsd.mongodb.net/database?retryWrites=true&w=majority`,
-  (error) => {
-    // Se houve erro, vamos retonar ele no console.log
-    if (error) {
-      return console.log(
-        "Ocorreu um erro ao se conectar com o banco de dados: ",
-        error
-      );
-    }
+const connectToDatabase = require("./config/database/connect");
+connectToDatabase();
 
-    //Caso não tenha tudo erro, vamos imprimir que foi bem sucedido
-    return console.log("Conexão com o banco de dados realizada com sucesso!");
-  }
-);
+const subjectModel = require("./config/models/subject");
 
-//Use parsing middleware
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(cors());
+const app = express();
+app.use(express.json());
 
-//Importando as rotas
-const userRoutes = require("./routes/user");
+const subjectRoutes = require("./config/routes/subject");
 
-//Usando rotas
-app.use("/api", userRoutes); // = localhost:500/api/signup
+app.use(subjectRoutes);
 
 const port = 8000;
 
-//Começando um servidor
 app.listen(port, () => {
   console.log(`Aplicativo rodando na porta ${port}`);
 });
