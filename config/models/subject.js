@@ -1,5 +1,27 @@
 const mongoose = require("mongoose");
 
+const reviewSchema = mongoose.Schema({
+  professor: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
+    default: 0,
+  },
+});
+
 const subjectSchema = new mongoose.Schema({
   subjectCode: {
     type: String,
@@ -11,6 +33,15 @@ const subjectSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+  },
+  reviews: [reviewSchema],
+  rating: {
+    type: Number,
+    default: 0,
+  },
+  numReviews: {
+    type: Number,
+    default: 0,
   },
 });
 
