@@ -5,12 +5,12 @@ require("dotenv").config();
 const connectToDatabase = require("./config/database/connect");
 connectToDatabase();
 
-const subjectModel = require("./config/models/subject");
+const subjectModel = require("./models/subject");
 
 const app = express();
 app.use(express.json());
 
-const subjectRoutes = require("./config/routes/subject");
+const subjectRoutes = require("./routes/subject");
 
 app.use(subjectRoutes);
 
