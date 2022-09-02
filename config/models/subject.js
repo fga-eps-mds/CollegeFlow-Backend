@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = mongoose.Schema({
+  _id: false,
   professor: {
     type: String,
     required: true,
@@ -23,7 +24,7 @@ const reviewSchema = mongoose.Schema({
 });
 
 const subjectSchema = new mongoose.Schema({
-  subjectCode: {
+  code: {
     type: String,
     required: true,
     maxlength: 7,
