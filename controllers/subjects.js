@@ -15,7 +15,7 @@ exports.listSubject = async (req, res) => {
 exports.detailSubject = async (req, res) => {
   try {
     const code = req.params.code;
-    const subject = await SubjectModel.find({"code":code}, "-numReviews -_id -__v")
+    const subject = await SubjectModel.findOne({"code":code}, "-numReviews -_id -__v")
 
     res.status(200).json(subject);
   } catch (error) {
