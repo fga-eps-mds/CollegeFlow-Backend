@@ -8,7 +8,7 @@ const router = express.Router();
 const SubjectModel = require("../models/subject");
 
 router.get("/subject", listSubject);
-router.get("/subject/:id", detailSubject);
-router.post("/subject/:id/review", createReview);
+router.get("/subject/:code", detailSubject);
+router.post("/subject/:code/review", createReview);
 
 module.exports = router;
