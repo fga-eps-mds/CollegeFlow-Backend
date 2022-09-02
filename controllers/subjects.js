@@ -4,7 +4,7 @@ exports.listSubject = async (req, res) => {
   try {
     const subjects = await SubjectModel.find(
       {},
-      "-rating -reviews -numReviews -_id -__v"
+      "-reviews -numReviews -_id -__v"
     );
     res.status(200).json(subjects);
   } catch (error) {
