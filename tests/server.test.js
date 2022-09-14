@@ -56,4 +56,42 @@ test("GET /subject/:code", async () => {
     await SubjectModel.findOneAndDelete({"code": subject.code})
 })
 
+test("POST /subject/:code/review", async () => {
+    const subject = await SubjectModel.create({
+		code: "FGA0002",
+		name: "Teste2",
+	})
+
+	await supertest(app)
+		.get("/subject/" + subject.code)
+		.expect(200)
+		.then((response) => {
+			expect(response.body.code).toBe(subject.code)
+			expect(response.body.name).toBe(subject.name)
+		})
+
+
+	const review = {
+		professor: "Teste",
+		title: "Teste",
+        comment: "Teste",
+        rating: 3.2,
+	}
+
+	await supertest(app)
+		.post("/subject/" + subject.code + "/review")
+		.send(review)
+		.expect(200)
+		.then(async (response) => {
+			// Check the response
+            expect(response.body.professor).toBe(review.professor)
+			expect(response.body.title).toBe(review.title)
+			expect(response.body.comment).toBe(review.comment)
+			expect(response.body.rating).toBe(review.rating)
+		})
+
+        await SubjectModel.findOneAndDelete({"code": subject.code})
+    })
+
+
 const app = createServer()
