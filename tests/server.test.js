@@ -39,4 +39,21 @@ test("GET /subject", async () => {
     await SubjectModel.findOneAndDelete({"code": subject.code})
 })
 
+test("GET /subject/:code", async () => {
+	const subject = await SubjectModel.create({
+		code: "FGA0001",
+		name: "Teste1",
+	})
+
+	await supertest(app)
+		.get("/subject/" + subject.code)
+		.expect(200)
+		.then((response) => {
+			expect(response.body.code).toBe(subject.code)
+			expect(response.body.name).toBe(subject.name)
+		})
+
+    await SubjectModel.findOneAndDelete({"code": subject.code})
+})
+
 const app = createServer()
